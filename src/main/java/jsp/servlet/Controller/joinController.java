@@ -19,15 +19,7 @@ public class joinController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String name = req.getParameter("name");
-        String id = req.getParameter("id");
-        String pw = req.getParameter("pw");
 
-        memberRepository.save(new Member(id, name ,pw));
-        List<Member> members = memberRepository.findMemberList();
-
-        req.setAttribute("members", members);
-        req.getServletContext().getRequestDispatcher("/MemberList.jsp").forward(req,resp);
     }
 
     @Override
