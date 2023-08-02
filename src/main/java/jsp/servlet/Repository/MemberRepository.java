@@ -1,6 +1,6 @@
 package jsp.servlet.Repository;
 
-import jsp.servlet.DAO.Member;
+import jsp.servlet.Entity.Member;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -53,20 +53,20 @@ public class MemberRepository {
         return member.getName()+ "님 환영합니다.";
     }
 
-    public List<Member> findMemberList(){
+    public List<Member> findAll(){
         open();
-        List<Member> members = new ArrayList<>();
+        List<Member> MemberDTOS = new ArrayList<>();
 
         try{
             pstmt = conn.prepareStatement("select * from member");
             ResultSet rs = pstmt.executeQuery();
 
             while (rs.next()){
-                members.add(new Member(rs.getString("id"), rs.getString("name"), rs.getString("pw")));
+                MemberDTOS.add(new Member(rs.getString("id"), rs.getString("name"), rs.getString("pw")));
             }
         } catch (Exception e){
             e.printStackTrace();
         }
-        return members;
+        return MemberDTOS;
     }
 }

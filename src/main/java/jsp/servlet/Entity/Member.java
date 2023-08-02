@@ -1,10 +1,13 @@
-package jsp.servlet.DAO;
+package jsp.servlet.Entity;
 
 public class Member {
     private String id;
     private String name;
-
     private String pw;
+
+    // 엔티티 기본 생성자 잠그기
+    private Member() {
+    }
 
     public Member(String id, String name, String pw) {
         this.name = name;

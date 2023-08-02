@@ -4,11 +4,9 @@ package jsp.servlet.Controller;
 import jakarta.servlet.*;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
-import jsp.servlet.DAO.Member;
 import jsp.servlet.Repository.MemberRepository;
 
 import java.io.IOException;
-import java.util.List;
 
 @WebServlet(value = "/join")
 public class joinController extends HttpServlet {
