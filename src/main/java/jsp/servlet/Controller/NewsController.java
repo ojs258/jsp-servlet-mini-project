@@ -32,7 +32,6 @@ public class NewsController extends HttpServlet {
         ctx = getServletContext();
         newsRepository = new NewsRepository();
     }
-
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("utf-8");
@@ -47,13 +46,12 @@ public class NewsController extends HttpServlet {
         try{
             m = this.getClass().getMethod(action, HttpServletRequest.class);
             view = (String)m.invoke(this, req);
-        } catch (NoSuchMethodException e){
-            e.printStackTrace();
-            req.setAttribute("error", "action 파라미터가 잘못 됐습니다");
-            view = START_PAGE;
+
         } catch (Exception e){
             e.printStackTrace();
+            view = START_PAGE;
         }
+
         if (view.startsWith("redirect:/")){
             resp.sendRedirect(view.substring("redirect:/".length()));
         } else {
@@ -79,24 +77,20 @@ public class NewsController extends HttpServlet {
 
         }catch (Exception e){
             e.printStackTrace();
-            req.setAttribute("error","뉴스 등록 실패");
             return listNews(req);
         }
 
-        return "newsList.jsp";
+        return "redirect:/news.nhn?action=listNews";
     }
-
     public String listNews(HttpServletRequest req) {
         List<News> list = newsRepository.findAll();
         try {
             req.setAttribute("newslist",list);
         } catch (Exception e) {
             e.printStackTrace();
-            req.setAttribute("error","뉴스 목록 불러오기 실패");
         }
         return "newsList.jsp";
     }
-
     public String getNews(HttpServletRequest req) {
 
         int aid = Integer.parseInt(req.getParameter("aid"));
@@ -106,7 +100,6 @@ public class NewsController extends HttpServlet {
             req.setAttribute("news",news);
         } catch(Exception e) {
             e.printStackTrace();
-            req.setAttribute("error","상세 뉴스 조회 실패");
         }
         return "newsView.jsp";
     }
@@ -116,12 +109,10 @@ public class NewsController extends HttpServlet {
             newsRepository.delete(aid);
         } catch (Exception e){
             e.printStackTrace();
-            req.setAttribute("error","삭제 실패");
             return listNews(req);
         }
         return "redirect:/news.nhn?action=listNews";
     }
-
     public String getFilename(Part part) {
         String header = part.getHeader("content-disposition");
 

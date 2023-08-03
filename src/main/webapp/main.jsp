@@ -1,13 +1,11 @@
-<!DOCTYPE html>
-<meta charset="UTF-8">
-<html lang="kr">
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
 <head>
-    <link rel="stylesheet" href="./css/index.css" />
-    <title>Home</title>
+    <title>Title</title>
 </head>
 <body>
 <div class="container">
-    <h2>로그인 실습</h2>
+    <h1>로그인 실습</h1>
     <div class="button">
         <a href="form/loginForm.html">로그인</a>
     </div>

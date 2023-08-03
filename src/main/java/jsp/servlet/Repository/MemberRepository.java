@@ -16,7 +16,6 @@ public class MemberRepository {
     private final String dbDriver = "org.h2.Driver";
     private final String dbUrl = "jdbc:h2:tcp://localhost/~/playdata";
 
-
     public void open(){
         try {
             Class.forName(dbDriver);
@@ -32,41 +31,99 @@ public class MemberRepository {
             conn.close();
         }catch (Exception e){
             e.printStackTrace();
+        }finally {
+            close();
         }
     }
 
-    public String  save(Member member){
+    public void save(Member member){
         open();
-        String sql = "INSERT INTO member(id, name, pw) values(?,?,?)";
-
         try{
-            pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, member.getId());
-            pstmt.setString(2, member.getName());
-            pstmt.setString(3, member.getPw());
+
+            pstmt = conn.prepareStatement("INSERT INTO member(email, pw, name) values(?,?,?)");
+
+            pstmt.setString(1, member.getEmail());
+            pstmt.setString(2, member.getPw());
+            pstmt.setString(3, member.getName());
+
             pstmt.executeUpdate();
-        }catch(Exception e){
+
+        } catch(Exception e) {
             e.printStackTrace();
         } finally {
             close();
         }
-        return member.getName()+ "님 환영합니다.";
     }
 
     public List<Member> findAll(){
         open();
-        List<Member> MemberDTOS = new ArrayList<>();
+        List<Member> members = new ArrayList<>();
 
         try{
+
             pstmt = conn.prepareStatement("select * from member");
             ResultSet rs = pstmt.executeQuery();
 
             while (rs.next()){
-                MemberDTOS.add(new Member(rs.getString("id"), rs.getString("name"), rs.getString("pw")));
+                members.add(new Member(rs.getInt("m_id"), rs.getString("m_email"), rs.getString("m_password"), rs.getString("m_name")));
             }
+
         } catch (Exception e){
             e.printStackTrace();
+        } finally {
+            close();
         }
-        return MemberDTOS;
+        return members;
+    }
+
+    public Member findByEmail(String m_email){
+        Member member = null;
+        try{
+
+            pstmt = conn.prepareStatement("select * from member where m_email = ?");
+            pstmt.setString(1, m_email);
+            ResultSet rs = pstmt.executeQuery();
+
+            member = new Member(rs.getInt("m_id"), rs.getString("m_email"), rs.getString("m_password"), rs.getString("m_name"));
+
+        } catch (Exception e){
+            e.printStackTrace();
+        } finally {
+            close();
+        }
+        return member;
+    }
+
+    public Member findOne(int m_id){
+        Member member = null;
+        try{
+
+            pstmt = conn.prepareStatement("select * from member where m_id = ?");
+            pstmt.setInt(1, m_id);
+            ResultSet rs = pstmt.executeQuery();
+
+            member = new Member(rs.getInt("m_id"), rs.getString("m_email"), rs.getString("m_password"), rs.getString("m_name"));
+
+        } catch (Exception e){
+            e.printStackTrace();
+        } finally {
+            close();
+        }
+        return member;
+    }
+
+    public void delete(int m_id){
+        try{
+
+            pstmt = conn.prepareStatement("delete from member where m_id = ?");
+            pstmt.setInt(1, m_id);
+
+            pstmt.executeUpdate();
+
+        } catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            close();
+        }
     }
 }

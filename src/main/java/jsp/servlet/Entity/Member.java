@@ -1,7 +1,8 @@
 package jsp.servlet.Entity;
 
 public class Member {
-    private String id;
+    private int id;
+    private String email;
     private String name;
     private String pw;
 
@@ -9,18 +10,31 @@ public class Member {
     private Member() {
     }
 
-    public Member(String id, String name, String pw) {
-        this.name = name;
+    public Member(int id, String email, String name, String pw) {
         this.id = id;
+        this.email = email;
+        this.name = name;
         this.pw = pw;
+    }
+
+    public Member(String email, String name, String pw) {
+        this.email = email;
+        this.name = name;
+        this.pw = pw;
+    }
+
+
+
+    public int getId() {
+        return id;
+    }
+
+    public String getEmail() {
+        return email;
     }
 
     public String getName() {
         return name;
-    }
-
-    public String getId() {
-        return id;
     }
 
     public String getPw() {

@@ -1,3 +1,5 @@
+
+
 package jsp.servlet.Controller;
 
 import jakarta.servlet.ServletException;
@@ -11,11 +13,12 @@ import jsp.servlet.Repository.MemberRepository;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(value = "/members")
-public class memberController extends HttpServlet {
+@WebServlet(urlPatterns = "/members")
+public class membersController extends HttpServlet {
 
     private static final MemberRepository memberRepository = new MemberRepository();
-    public memberController() {
+
+    public membersController() {
         super();
     }
 
@@ -23,10 +26,7 @@ public class memberController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<Member> members = memberRepository.findAll();
         req.setAttribute("members", members);
-        req.getServletContext().getRequestDispatcher("/MemberList.jsp").forward(req,resp);
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.getServletContext().getRequestDispatcher("/memberList.jsp").forward(req,resp);
     }
 }
+

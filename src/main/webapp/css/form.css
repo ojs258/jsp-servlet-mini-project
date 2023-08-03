@@ -10,18 +10,24 @@ body {
 }
 .container {
     text-align: center;
-    font-family: "나눔고딕 ExtraBold",serif;
     font-size: 25px;
+    vertical-align: middle;
 }
-.button {
+.tag {
+    line-height: 200%;
+}
+label {
+    display:inline-block;
+    text-align:right;
+    width: 120px;
+}
+input {
+    border: 1px solid gray;
     display: inline-block;
-    border: 2px solid black;
+    font-size: 25px;
     border-radius: 5px;
 }
-a {
-    display: block;
-    text-decoration: none;
-    color: black;
-    font-size: 40px;
-    padding: 5px;
+button {
+    margin-top: 30px;
+    font-size: 30px;
 }

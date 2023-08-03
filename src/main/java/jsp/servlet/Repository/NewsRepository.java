@@ -2,7 +2,10 @@ package jsp.servlet.Repository;
 
 import jsp.servlet.Entity.News;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -103,9 +106,12 @@ public class NewsRepository {
     }
 
     public void delete(int aid){
+        System.out.println("aid = " + aid);
         open();
         try{
             pstmt = conn.prepareStatement("delete from news where aid=?");
+            pstmt.setInt(1,aid);
+            pstmt.executeUpdate();
         } catch (Exception e){
             e.printStackTrace();
             System.out.println("delete에러");

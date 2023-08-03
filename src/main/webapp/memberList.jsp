@@ -1,9 +1,9 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
+<%@ page contentType="text/html;charset=UTF-8" isELIgnored="false" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <link rel="stylesheet" href="CSS/memberList.css" />
-    <title>Title</title>
+    <link rel="stylesheet" href="./css/memberList.css"/>
+    <title>뉴스 목록</title>
 </head>
 <style>
 
@@ -14,10 +14,10 @@
     <table>
         <th>회원 아이디</th>
         <th>회원 이름</th>
-        <c:forEach var="MemberDTO" items="${MemberDTOS}">
+        <c:forEach var="members" items="${members}">
         <tr>
-            <td>${MemberDTO.name}</td>
-            <td>${MemberDTO.id}</td>
+            <td>${members.id}</td>
+            <td>${members.name}</td>
         </tr>
         </c:forEach>
     </table>
