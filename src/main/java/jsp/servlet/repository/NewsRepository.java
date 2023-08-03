@@ -1,6 +1,6 @@
-package jsp.servlet.Repository;
+package jsp.servlet.repository;
 
-import jsp.servlet.Entity.News;
+import jsp.servlet.entity.News;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

@@ -1,7 +1,7 @@
-package jsp.servlet.Entity;
+package jsp.servlet.entity;
 
 public class News {
-    private int aid;
+    private int id;
     private String title;
     private String img;
     private String date;
@@ -10,8 +10,8 @@ public class News {
     public News() {
     }
 
-    public News(int aid,String title, String img, String date, String content) {
-        this.aid = aid;
+    public News(int id, String title, String img, String date, String content) {
+        this.id = id;
         this.title = title;
         this.img = img;
         this.date = date;
@@ -35,7 +35,7 @@ public class News {
     }
 
     public int getAid() {
-        return aid;
+        return id;
     }
     public String getTitle() {
         return title;

@@ -1,16 +1,17 @@
-package jsp.servlet.Controller;
+package jsp.servlet.controller.memberController;
 
-import jakarta.servlet.*;
+import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.*;
-import jsp.servlet.Repository.MemberRepository;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
 @WebServlet(value = "/login")
 public class loginController extends HttpServlet {
 
-    private static final MemberRepository memberRepository = new MemberRepository();
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
@@ -18,9 +19,6 @@ public class loginController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String email = req.getParameter("email");
-        String pw = req.getParameter("pw");
 
-        memberRepository.findOne(email)
     }
 }

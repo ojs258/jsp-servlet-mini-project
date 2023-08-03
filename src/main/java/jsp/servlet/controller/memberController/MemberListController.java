@@ -1,24 +1,25 @@
 
 
-package jsp.servlet.Controller;
+package jsp.servlet.controller.memberController;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jsp.servlet.Entity.Member;
-import jsp.servlet.Repository.MemberRepository;
+import jsp.servlet.entity.Member;
+import jsp.servlet.repository.MemberRepository;
+
 
 import java.io.IOException;
 import java.util.List;
 
 @WebServlet(urlPatterns = "/members")
-public class membersController extends HttpServlet {
+public class MemberListController extends HttpServlet {
 
     private static final MemberRepository memberRepository = new MemberRepository();
 
-    public membersController() {
+    public MemberListController() {
         super();
     }
 

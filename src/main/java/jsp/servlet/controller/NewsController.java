@@ -1,4 +1,4 @@
-package jsp.servlet.Controller;
+package jsp.servlet.controller;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletConfig;
@@ -10,8 +10,8 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.Part;
-import jsp.servlet.Entity.News;
-import jsp.servlet.Repository.NewsRepository;
+import jsp.servlet.entity.News;
+import jsp.servlet.repository.NewsRepository;
 import org.apache.commons.beanutils.BeanUtils;
 
 import java.io.IOException;

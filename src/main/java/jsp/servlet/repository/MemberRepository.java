@@ -1,6 +1,6 @@
-package jsp.servlet.Repository;
+package jsp.servlet.repository;
 
-import jsp.servlet.Entity.Member;
+import jsp.servlet.entity.Member;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -11,7 +11,7 @@ import java.util.List;
 
 public class MemberRepository {
     Connection conn = null;
-    PreparedStatement pstmt;
+    PreparedStatement pstmt = null;
 
     private final String dbDriver = "org.h2.Driver";
     private final String dbUrl = "jdbc:h2:tcp://localhost/~/playdata";
@@ -31,8 +31,6 @@ public class MemberRepository {
             conn.close();
         }catch (Exception e){
             e.printStackTrace();
-        }finally {
-            close();
         }
     }
 
@@ -40,7 +38,7 @@ public class MemberRepository {
         open();
         try{
 
-            pstmt = conn.prepareStatement("INSERT INTO member(email, pw, name) values(?,?,?)");
+            pstmt = conn.prepareStatement("INSERT INTO member(m_email, m_password, m_name) values(?,?,?)");
 
             pstmt.setString(1, member.getEmail());
             pstmt.setString(2, member.getPw());
@@ -50,6 +48,7 @@ public class MemberRepository {
 
         } catch(Exception e) {
             e.printStackTrace();
+            System.out.println("save error");
         } finally {
             close();
         }
