@@ -6,6 +6,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jsp.servlet.dto.MemberDto;
 import jsp.servlet.entity.Member;
 import jsp.servlet.service.MemberService;
 
@@ -17,11 +18,13 @@ public class JoinController extends HttpServlet {
     private final static MemberService memberService = new MemberService();
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String email = req.getParameter("email");
-        String pw = req.getParameter("pw");
-        String name = req.getParameter("name");
+        MemberDto member = new MemberDto();
 
-        memberService.saveForJoin(new Member(email, pw, name));
+        member.setEmail(req.getParameter("email"));
+        member.setPw(req.getParameter("pw"));
+        member.setName(req.getParameter("name"));
+
+        memberService.join(member);
 
         resp.sendRedirect("index.html");
     }

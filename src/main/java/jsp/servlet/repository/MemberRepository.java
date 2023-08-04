@@ -102,7 +102,6 @@ public class MemberRepository {
             ResultSet rs = pstmt.executeQuery();
 
             member = new Member(rs.getInt("m_id"), rs.getString("m_email"), rs.getString("m_password"), rs.getString("m_name"));
-
         } catch (Exception e){
             e.printStackTrace();
         } finally {

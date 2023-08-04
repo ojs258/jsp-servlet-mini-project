@@ -26,6 +26,9 @@ dependencies {
     implementation group: 'org.glassfish.web', name: 'jakarta.servlet.jsp.jstl', version: '2.0.0'
     implementation group: 'commons-beanutils', name: 'commons-beanutils', version: '1.9.4'
     implementation group: 'com.h2database', name: 'h2', version: '2.1.214'
+    implementation group: 'org.glassfish.jersey.containers', name: 'jersey-container-servlet', version: '3.1.2'
+    implementation group: 'org.glassfish.jersey.inject', name: 'jersey-hk2', version: '3.1.2'
+    implementation group: 'org.glassfish.jersey.media', name: 'jersey-media-json-jackson', version: '3.1.2'
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
 }

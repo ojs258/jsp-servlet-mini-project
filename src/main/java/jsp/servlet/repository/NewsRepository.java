@@ -35,7 +35,7 @@ public class NewsRepository {
 
     public void save(News news){
         open();
-        String sql = "INSERT INTO news(title, img, date, content) values(?,?,CURRENT_TIMESTAMP(),?)";
+        String sql = "INSERT INTO news(n_title, n_img, n_date, n_content) values(?,?,CURRENT_TIMESTAMP(),?)";
         System.out.println("news.getTitle() = " + news.getTitle());
         try{
             pstmt = conn.prepareStatement(sql);
@@ -56,16 +56,16 @@ public class NewsRepository {
         List<News> newsList = new ArrayList<>();
 
         try{
-            pstmt = conn.prepareStatement("select aid, title, img, FORMATDATETIME(date,'yyyy-MM-dd hh:mm:ss')as cdate, content" +
+            pstmt = conn.prepareStatement("select n_id, n_title, n_img, FORMATDATETIME(n_date,'yyyy-MM-dd hh:mm:ss')as n_date, n_content" +
                     " from news");
             ResultSet rs = pstmt.executeQuery();
 
             while (rs.next()){
-                newsList.add(new News(rs.getInt("aid")
-                                        ,rs.getString("title")
-                                        , rs.getString("img")
-                                        , rs.getString("cdate")
-                                        ,rs.getString("content")));
+                newsList.add(new News(rs.getInt("n_id")
+                                        ,rs.getString("n_title")
+                                        , rs.getString("n_img")
+                                        , rs.getString("n_date")
+                                        ,rs.getString("n_content")));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -76,25 +76,25 @@ public class NewsRepository {
         return newsList;
     }
 
-    public News findOne(int aid){
+    public News findOne(int id){
         News news = null;
         open();
 
         try{
-            pstmt = conn.prepareStatement("select aid, title, img, FORMATDATETIME(date,'yyyy-MM-dd hh:mm:ss')as cdate, content" +
+            pstmt = conn.prepareStatement("select n_id, n_title, n_img, FORMATDATETIME(n_date,'yyyy-MM-dd hh:mm:ss')as n_date, n_content" +
                     " from news " +
-                    " where aid=?");
+                    " where n_id=?");
 
-            pstmt.setInt(1,aid);
+            pstmt.setInt(1,id);
             ResultSet rs = pstmt.executeQuery();
 
             rs.next();
 
-            news = new News(rs.getInt("aid"),
-                    rs.getString("title"),
-                    rs.getString("img"),
-                    rs.getString("cdate"),
-                    rs.getString("content"));
+            news = new News(rs.getInt("n_id"),
+                    rs.getString("n_title"),
+                    rs.getString("n_img"),
+                    rs.getString("n_date"),
+                    rs.getString("n_content"));
 
         }catch (Exception e){
             e.printStackTrace();
