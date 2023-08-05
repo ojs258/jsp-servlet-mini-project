@@ -13,6 +13,21 @@ body {
     font-size: 25px;
     vertical-align: middle;
 }
+.alert {
+    border-radius: 5px;
+    font-size: 17px;
+    background: cornsilk;
+    color: #ff1400;
+    animation: fadeout 3s;
+    animation-fill-mode: forwards;
+}
+@keyframes fadeout {
+    from {
+        opacity: 1;
+    }to {
+        opacity: 0;
+    }
+}
 .tag {
     line-height: 200%;
 }

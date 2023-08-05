@@ -36,7 +36,7 @@ public class NewsRepository {
     public void save(News news){
         open();
         String sql = "INSERT INTO news(n_title, n_img, n_date, n_content) values(?,?,CURRENT_TIMESTAMP(),?)";
-        System.out.println("news.getTitle() = " + news.getTitle());
+
         try{
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, news.getTitle());

@@ -12,6 +12,10 @@ public class Member {
     private Member() {
     }
 
+    public Member(String email) {
+        this.email = email;
+    }
+
     public Member(int id, String email, String pw, String name) {
         this.id = id;
         this.email = email;

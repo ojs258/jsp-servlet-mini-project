@@ -6,6 +6,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jsp.JoinException.EmailDuplicatedException;
 import jsp.servlet.dto.MemberDto;
 import jsp.servlet.entity.Member;
 import jsp.servlet.service.MemberService;
@@ -24,8 +25,12 @@ public class JoinController extends HttpServlet {
         member.setPw(req.getParameter("pw"));
         member.setName(req.getParameter("name"));
 
-        memberService.join(member);
-
+        try{
+            memberService.join(member);
+        }catch (EmailDuplicatedException e){
+            req.setAttribute("error",e.getMessage());
+            req.getRequestDispatcher("joinForm.jsp").forward(req, resp);
+        }
         resp.sendRedirect("index.html");
     }
 }

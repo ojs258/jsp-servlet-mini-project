@@ -37,7 +37,7 @@ public class NewsController extends HttpServlet {
         String action = req.getParameter("action");
 
         Method m;
-        String view = null;
+        String view;
 
         if(action == null){
             action = "listNews";

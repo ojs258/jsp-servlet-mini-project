@@ -6,7 +6,7 @@ import jakarta.ws.rs.core.Application;
 import java.util.HashMap;
 import java.util.Map;
 
-@ApplicationPath("/")
+@ApplicationPath("/api")
 public class RestConfig extends Application {
     @Override
     public Map<String, Object> getProperties() {
