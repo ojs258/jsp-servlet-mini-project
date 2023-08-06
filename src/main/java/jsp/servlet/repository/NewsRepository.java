@@ -35,13 +35,16 @@ public class NewsRepository {
 
     public void save(News news){
         open();
-        String sql = "INSERT INTO news(n_title, n_img, n_date, n_content) values(?,?,CURRENT_TIMESTAMP(),?)";
+        String sql = "INSERT INTO news(n_title, n_img, n_date, n_content, m_id) values(?,?,CURRENT_TIMESTAMP(),?,?)";
 
         try{
             pstmt = conn.prepareStatement(sql);
+
             pstmt.setString(1, news.getTitle());
             pstmt.setString(2, news.getImg());
             pstmt.setString(3, news.getContent()); // 3번 스킵하고 알아서 4번에 넣어주는듯?
+            pstmt.setInt(4, news.getM_id());
+
             pstmt.executeUpdate();
         }catch(Exception e){
             e.printStackTrace();

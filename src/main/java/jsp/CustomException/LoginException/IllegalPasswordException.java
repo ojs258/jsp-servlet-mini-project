@@ -1,4 +1,4 @@
-package jsp.LoginException;
+package jsp.CustomException.LoginException;
 
 public class IllegalPasswordException extends RuntimeException{
     public IllegalPasswordException() {

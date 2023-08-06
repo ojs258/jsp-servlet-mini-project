@@ -1,8 +1,8 @@
 package jsp.servlet.service;
 
-import jsp.JoinException.EmailDuplicatedException;
-import jsp.LoginException.EmailNotFoundException;
-import jsp.LoginException.IllegalPasswordException;
+import jsp.CustomException.JoinException.EmailDuplicatedException;
+import jsp.CustomException.LoginException.EmailNotFoundException;
+import jsp.CustomException.LoginException.IllegalPasswordException;
 import jsp.servlet.dto.MemberDto;
 import jsp.servlet.entity.Member;
 import jsp.servlet.repository.MemberRepository;

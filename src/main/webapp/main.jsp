@@ -9,7 +9,7 @@
     <h1>메인 페이지</h1>
     <div>${name}님 환영합니다. 아래 메뉴를 이용해 주세요.</div>
     <div class="button">
-        <a methods="get" href="/newsForm.html">뉴스등록</a>
+        <a methods="get" href="/newsForm.jsp">뉴스등록</a>
     </div>
     <div class="button">
         <a methods="get" href="/news.nhn">뉴스목록</a>

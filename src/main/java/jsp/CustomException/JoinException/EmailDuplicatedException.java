@@ -1,4 +1,4 @@
-package jsp.JoinException;
+package jsp.CustomException.JoinException;
 
 public class EmailDuplicatedException extends RuntimeException{
 

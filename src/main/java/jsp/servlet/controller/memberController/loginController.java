@@ -6,8 +6,6 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import jsp.LoginException.EmailNotFoundException;
-import jsp.LoginException.IllegalPasswordException;
 import jsp.servlet.dto.MemberDto;
 import jsp.servlet.service.MemberService;
 

@@ -1,4 +1,4 @@
-package jsp.LoginException;
+package jsp.CustomException.LoginException;
 
 public class EmailNotFoundException extends RuntimeException{
     public EmailNotFoundException() {
