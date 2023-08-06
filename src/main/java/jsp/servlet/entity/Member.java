@@ -1,5 +1,7 @@
 package jsp.servlet.entity;
 
+import java.util.List;
+
 public class Member {
     private int id;
     private String email;
@@ -7,6 +9,8 @@ public class Member {
     private String pw;
 
     private String name;
+
+    private List<Integer> news_ids;
 
     // 엔티티 기본 생성자 잠그기
     private Member() {
@@ -29,7 +33,9 @@ public class Member {
         this.pw = pw;
     }
 
-
+    public void addNews(int n_id){
+        news_ids.add(n_id);
+    }
 
     public int getId() {
         return id;

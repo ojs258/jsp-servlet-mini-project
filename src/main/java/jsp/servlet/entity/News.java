@@ -6,6 +6,7 @@ public class News {
     private String img;
     private String date;
     private String content;
+    private int m_id;
 
     public News() {
     }
@@ -16,6 +17,19 @@ public class News {
         this.img = img;
         this.date = date;
         this.content = content;
+    }
+
+    public News(int id, String title, String img, String date, String content, int m_id) {
+        this.id = id;
+        this.title = title;
+        this.img = img;
+        this.date = date;
+        this.content = content;
+        this.m_id = m_id;
+    }
+
+    public void setMember(int m_id){
+        this.m_id = m_id;
     }
 
     public void setTitle(String title) {
