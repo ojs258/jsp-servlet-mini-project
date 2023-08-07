@@ -12,13 +12,13 @@
 </head>
 <body>
     <div class="container w-75 mt-5 mx-auto">
-        <h2>${news.title}</h2>
+        <h2>${detailNews.title}</h2>
         <hr>
         <div class="card w-75 mx-auto">
-            <img class="card-img-top" src="${news.img}">
+            <img class="card-img-top" src="${detailNews.img}">
             <div class="card-body">
-                <h4 class="card-title">Date: ${news.date}</h4>
-                <p class="card-text">Content: ${news.content}</p>
+                <h4 class="card-title">Date: ${detailNews.date}</h4>
+                <p class="card-text">Content: ${detailNews.content}</p>
             </div>
         </div>
         <hr>

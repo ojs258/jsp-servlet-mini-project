@@ -6,6 +6,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jsp.CustomException.JoinException.EmailDuplicatedException;
+import jsp.CustomException.JoinException.JoinInformationInsufficientException;
 import jsp.servlet.dto.MemberDto;
 import jsp.servlet.service.MemberService;
 
@@ -17,15 +18,15 @@ public class JoinController extends HttpServlet {
     private final static MemberService memberService = new MemberService();
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        MemberDto member = new MemberDto();
+        MemberDto newMember = new MemberDto();
 
-        member.setEmail(req.getParameter("email"));
-        member.setPw(req.getParameter("pw"));
-        member.setName(req.getParameter("name"));
+        newMember.setEmail(req.getParameter("email"));
+        newMember.setPw(req.getParameter("pw"));
+        newMember.setName(req.getParameter("name"));
 
         try{
-            memberService.join(member);
-        }catch (EmailDuplicatedException e){
+            memberService.join(newMember);
+        }catch (EmailDuplicatedException | JoinInformationInsufficientException e){
             req.setAttribute("error",e.getMessage());
             req.getRequestDispatcher("joinForm.jsp").forward(req, resp);
         }

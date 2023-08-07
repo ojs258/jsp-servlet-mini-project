@@ -79,7 +79,34 @@ public class NewsRepository {
         return newsList;
     }
 
-    public News findOne(int id){
+    public List<News> findAllByMember(int m_id){
+        open();
+        List<News> newsList = new ArrayList<>();
+
+        try{
+            pstmt = conn.prepareStatement("select n_id, n_title, n_img, FORMATDATETIME(n_date,'yyyy-MM-dd hh:mm:ss')as n_date, n_content" +
+                    " from news" +
+                    " where m_id=?");
+            pstmt.setInt(1,m_id);
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()){
+                newsList.add(new News(rs.getInt("n_id")
+                        ,rs.getString("n_title")
+                        , rs.getString("n_img")
+                        , rs.getString("n_date")
+                        ,rs.getString("n_content")));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("findAll에러");
+        }finally {
+            close();
+        }
+        return newsList;
+    }
+
+    public News findOne(int n_id){
         News news = null;
         open();
 
@@ -88,7 +115,7 @@ public class NewsRepository {
                     " from news " +
                     " where n_id=?");
 
-            pstmt.setInt(1,id);
+            pstmt.setInt(1,n_id);
             ResultSet rs = pstmt.executeQuery();
 
             rs.next();
@@ -108,12 +135,11 @@ public class NewsRepository {
         return news;
     }
 
-    public void delete(int aid){
-        System.out.println("aid = " + aid);
+    public void delete(int n_id){
         open();
         try{
-            pstmt = conn.prepareStatement("delete from news where aid=?");
-            pstmt.setInt(1,aid);
+            pstmt = conn.prepareStatement("delete from news where n_id=?");
+            pstmt.setInt(1,n_id);
             pstmt.executeUpdate();
         } catch (Exception e){
             e.printStackTrace();

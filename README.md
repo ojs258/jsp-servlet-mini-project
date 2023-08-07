@@ -1,8 +1,6 @@
 # jsp-servlet-mini-project
 html, jsp, servlet으로 MVC패턴 익히기
 
-jsp:javabean과 javaClass로 model(DTO,DAO)을 구현
-
 html과 css, bootstrap, jsp와 taglib, EL으로 view를 구현
 
 Servlet으로 Contoller를 구현

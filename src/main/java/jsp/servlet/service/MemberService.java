@@ -1,6 +1,7 @@
 package jsp.servlet.service;
 
 import jsp.CustomException.JoinException.EmailDuplicatedException;
+import jsp.CustomException.JoinException.JoinInformationInsufficientException;
 import jsp.CustomException.LoginException.EmailNotFoundException;
 import jsp.CustomException.LoginException.IllegalPasswordException;
 import jsp.servlet.dto.MemberDto;
@@ -15,10 +16,26 @@ public class MemberService {
                 newMember.getPw(),
                 newMember.getName());
 
+        insufficient(member);
+
         if(duplication(member.getEmail())){
             throw new EmailDuplicatedException();
         }
         memberRepository.save(member);
+    }
+
+    private void insufficient(Member member) {
+        if(member.getEmail().isEmpty()){
+            throw new JoinInformationInsufficientException();
+        }
+
+        if(member.getPw().isEmpty()){
+            throw new JoinInformationInsufficientException();
+        }
+
+        if(member.getName().isEmpty()){
+            throw new JoinInformationInsufficientException();
+        }
     }
 
     public MemberDto login(String email, String pw){

@@ -6,6 +6,8 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import jsp.CustomException.LoginException.EmailNotFoundException;
+import jsp.CustomException.LoginException.IllegalPasswordException;
 import jsp.servlet.dto.MemberDto;
 import jsp.servlet.service.MemberService;
 
@@ -26,7 +28,7 @@ public class loginController extends HttpServlet {
         HttpSession session = req.getSession();
         try{
             memberDto = memberService.login(req.getParameter("email"), req.getParameter("pw"));
-        } catch (Exception e) {
+        } catch (EmailNotFoundException | IllegalPasswordException e) {
             req.setAttribute("error", e.getMessage());
             req.getRequestDispatcher("loginForm.jsp").forward(req, resp);
         }

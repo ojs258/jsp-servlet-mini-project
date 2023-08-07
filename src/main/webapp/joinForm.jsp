@@ -7,20 +7,10 @@
     <meta charset="UTF-8">
     <title>회원가입</title>
 </head>
-<script>
-    window.onbeforeunload = function (){
-        <c:if test="${null != msg}">
-            alert(${msg});
-        </c:if>
-    }
-</script>
-<body onload="error()">
+<body>
 <div class="container">
     <form method="post" action="/join">
         <h2>회원 가입</h2>
-        <c:if test="${error != null}">
-            <div class="alert">${error}</div>
-        </c:if>
         <div class="tag">
             <label>이메일 : </label> <input name="email" type="text"><br>
             <label>비밀번호 : </label> <input name="pw" type="text"><br>
@@ -30,6 +20,9 @@
         <button type="submit">회원 가입</button>
         <button type="reset">초기화</button>
     </form>
+    <c:if test="${error != null}">
+        <div class="alert">${error}</div>
+    </c:if>
 </div>
 </body>
 </html>

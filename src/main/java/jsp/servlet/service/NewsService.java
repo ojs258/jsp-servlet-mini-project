@@ -1,11 +1,10 @@
 package jsp.servlet.service;
 
-import jsp.servlet.dto.MemberDto;
 import jsp.servlet.dto.NewsDto;
 import jsp.servlet.entity.News;
 import jsp.servlet.repository.NewsRepository;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 public class NewsService {
@@ -17,16 +16,29 @@ public class NewsService {
                                 newsDto.getM_id()));
     }
 
-    public List<MemberDto> listNews(){
-        return new LinkedList<>();
+    public List<NewsDto> memberNewsList(int m_id){
+        List<NewsDto> newsList = new ArrayList<>();
+        List<News> memberNews = newsRepository.findAllByMember(m_id);
+
+        for (News news : memberNews) {
+            newsList.add(new NewsDto(news.getId(), news.getTitle(),
+                        news.getImg(),
+                        news.getDate(),
+                        news.getContent()));
+        }
+        return newsList;
     }
-    public NewsDto detailNews(){
+    public NewsDto detailNews(int n_id){
+        News detail = newsRepository.findOne(n_id);
+        NewsDto detailDto = new NewsDto(detail.getTitle(),
+                                detail.getImg(),
+                                detail.getDate(),
+                                detail.getContent());
 
-        return new NewsDto();
+        return detailDto;
     }
 
-    public void deleteNews(){
-
+    public void deleteNews(int n_id){
+        newsRepository.delete(n_id);
     }
-
 }

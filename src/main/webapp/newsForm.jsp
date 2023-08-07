@@ -31,6 +31,7 @@
             <button type="submit" class="btn btn-success mt-3">저장</button>
         </form>
     </div>
+    <a href="javascript:history.back()" class="btn btn-primary"> << BACK </a>
 </div>
 </body>
 </html>

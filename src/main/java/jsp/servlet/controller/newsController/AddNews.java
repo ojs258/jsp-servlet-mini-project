@@ -26,8 +26,8 @@ public class AddNews extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
         Integer m_id = (Integer) session.getAttribute("id");
-        String title = req.getParameter("title");
-        String content = req.getParameter("content");
+        String n_title = req.getParameter("title");
+        String n_content = req.getParameter("content");
 
         Part part = req.getPart("file");
         String fileName = getFilename(part);
@@ -35,7 +35,7 @@ public class AddNews extends HttpServlet {
             part.write(fileName);
         }
         try{
-            newsService.addNews(new NewsDto(title,"/img/"+fileName,content,m_id));
+            newsService.addNews(new NewsDto(n_title,"/img/"+fileName,n_content,m_id));
         }catch (Exception e){
             req.setAttribute("error",e.getMessage());
             req.getRequestDispatcher("newsForm.jsp").forward(req,resp);

@@ -4,13 +4,18 @@ import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.servlet.annotation.WebServlet;
+import jsp.servlet.dto.NewsDto;
 import jsp.servlet.entity.News;
+import jsp.servlet.service.NewsService;
 
 @WebServlet(value = "/news")
 public class ListNews extends HttpServlet {
+
+    private static final NewsService newsService = new NewsService();
 
     public ListNews() {
         super();
@@ -19,19 +24,18 @@ public class ListNews extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-    }
+        HttpSession session = req.getSession();
 
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        Integer m_id = (Integer) session.getAttribute("id");
 
-    }
-    public String listNews(HttpServletRequest req) {
-        List<News> list = newsRepository.findAll();
         try {
-            req.setAttribute("newslist",list);
+            List<NewsDto> newslist = new ArrayList<>();
+            newslist.addAll(newsService.memberNewsList(m_id));
+            req.setAttribute("newslist",newslist);
         } catch (Exception e) {
-            e.printStackTrace();
+            req.setAttribute("error",e.getMessage());
+        }finally {
+            req.getRequestDispatcher("/newsList.jsp").forward(req,resp);
         }
-        return "newsList.jsp";
     }
 }

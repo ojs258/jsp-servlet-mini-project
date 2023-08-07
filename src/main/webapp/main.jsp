@@ -12,13 +12,13 @@
         <a methods="get" href="/newsForm.jsp">뉴스등록</a>
     </div>
     <div class="button">
-        <a methods="get" href="/news.nhn">뉴스목록</a>
+        <a methods="get" href="/news">뉴스목록</a>
     </div>
     <div class="button">
         <a methods="get" href="/logout">로그아웃</a>
     </div>
     <div class="button">
-        <a methods="get" href="/withdraw">회원탈퇴</a>
+        <a methods="delete" href="/withdraw">회원탈퇴</a>
     </div>
 </div>
 </body>

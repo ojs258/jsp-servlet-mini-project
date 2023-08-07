@@ -27,6 +27,11 @@ public class News {
         this.content = content;
         this.m_id = m_id;
     }
+
+    public int getId() {
+        return id;
+    }
+
     public String getTitle() {
         return title;
     }
@@ -41,5 +46,9 @@ public class News {
 
     public int getM_id() {
         return m_id;
+    }
+
+    public String getDate() {
+        return date;
     }
 }

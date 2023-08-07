@@ -18,14 +18,16 @@
     <ul class="list-group">
         <c:forEach var="news" items="${newslist}" varStatus="status">
             <li class="list-group-item list-group-item-action d-flex justify-content-between align-item-center">
-                <a href="news.nhn?action=getNews&aid=${news.aid}" class="text-decoration-none">
+                <a href="/detail?id=${news.id}" class="text-decoration-none">
                     [${status.count}] ${news.title}, ${news.date} </a>
-                <a href="news.nhn?action=deleteNews&aid=${news.aid}" class="text-decoration-none">
+                <a href="/delete?id=${news.id}" class="text-decoration-none">
                     <span class="badge bg-secondary">&times;</span>
                 </a>
             </li>
         </c:forEach>
     </ul>
+    <a href="javascript:history.back()" class="btn btn-primary"> << BACK </a>
+    <a href="/main.jsp" class="btn btn-primary"> << HOME </a>
 </div>
 </body>
 </html>

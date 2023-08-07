@@ -10,9 +10,7 @@
 <div class="container">
     <form method="post" action="/login">
         <h2>로그인</h2>
-        <c:if test="${error != null}">
-            <div class="alert">${error}</div>
-        </c:if>
+
         <div class="tag">
             <label>이메일 : </label>
             <input type="email" name="email"><br>
@@ -22,6 +20,13 @@
         <p style="font-size: 17px">${msg}</p>
         <button type="submit">로그인</button>
     </form>
+
+</div>
+<br>
+<div>
+    <c:if test="${error != null}">
+        <div class="alert">${error}</div>
+    </c:if>
 </div>
 </body>
 </html>
